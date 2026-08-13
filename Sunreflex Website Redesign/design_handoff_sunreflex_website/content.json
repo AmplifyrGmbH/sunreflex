@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "company": "Frontwork AG, Geschäftsbereich Sunreflex",
+    "brand": "Sunreflex",
+    "tagline": "sonnen- und blendschutz",
+    "address": "Stationsstrasse 1, CH-8306 Brüttisellen",
+    "phone": "+41 44 802 90 70",
+    "phoneHref": "tel:+41448029070",
+    "email": "info@sunreflex.ch",
+    "openingHours": "Montag bis Freitag 8.00 – 17.00 Uhr, auf Voranmeldung",
+    "source": "sunreflex.ch"
+  },
+  "nav": [
+    { "label": "Produkte", "href": "#produkte" },
+    { "label": "Wirkung", "href": "#wirkung" },
+    { "label": "Ablauf", "href": "#ablauf" },
+    { "label": "Referenzen", "href": "#referenzen" },
+    { "label": "Kontakt", "href": "#kontakt" }
+  ],
+  "hero": {
+    "eyebrow": "Brüttisellen · Vertriebspartner in der ganzen Schweiz",
+    "headline": ["Licht behalten.", "Hitze aussperren."],
+    "lead": "Spezialist für Sonnenschutz und Blendschutz an Fenstern, Glasfassaden und Dachverglasungen. Von hochreflektierenden Fensterfolien bis zu massgefertigten textilen Systemen — geplant, geliefert und montiert aus einer Hand.",
+    "ctaPrimary": { "label": "Beratung anfragen", "href": "#kontakt" },
+    "ctaSecondary": { "label": "Systeme ansehen", "href": "#produkte" },
+    "stats": [
+      { "value": "99.9%", "label": "UV-Schutz" },
+      { "value": "CH + FL", "label": "Exklusiv MULTIFILM®" },
+      { "value": "1 Partner", "label": "Beratung bis Montage" }
+    ],
+    "videoSlot": {
+      "note": "Vollflächiges Loop-Video, 16:9, object-fit: cover. Poster-Bild erforderlich.",
+      "src": null,
+      "poster": null
+    }
+  },
+  "manufacturers": ["3M", "AVERY DENNISON", "MULTIFILM®", "SILENT GLISS", "CRÉATION BAUMANN", "MHZ", "LEHA", "IMAGEPERFECT"],
+  "wirkung": {
+    "headline": "Der Unterschied ist messbar — und sichtbar.",
+    "lead": "Ziehen Sie den Regler. Links dieselbe Fassade ohne Schutz mit Blendung und Wärmeeintrag, rechts mit Sunreflex-Sonnenschutzfolie. Gleicher Ausblick, spürbar weniger Hitze.",
+    "compare": {
+      "initialSplit": 46,
+      "before": { "label": "Foto: Fassade ohne Schutz", "image": null },
+      "after": { "label": "Foto: Fassade mit Folie", "image": null }
+    },
+    "stats": [
+      { "value": "99.9%", "text": "UV-Schutz — die Ausbleichung wird auf Jahre verzögert" },
+      { "value": "Hitze", "text": "Spürbare Temperatur-Reduktion auch bei hohen Aussentemperaturen" },
+      { "value": "Blendfrei", "text": "Arbeiten am Bildschirm ohne Reflexionen, bei erhaltenem Tageslicht" },
+      { "value": "CH-weit", "text": "Montagepartner in der ganzen Schweiz, Showroom in Brüttisellen" }
+    ]
+  },
+  "produkte": {
+    "eyebrow": "Systeme",
+    "headline": "Für jedes Fenster die passende Lösung.",
+    "lead": "Von Textilrollos und technischen Rollos über Flächen- und Lamellenvorhänge bis zu Flachglasfolien. Alle Produkte zeichnen sich aus durch Funktionalität, Zuverlässigkeit und Langlebigkeit.",
+    "items": [
+      { "no": "01", "title": "Sonnenschutzfolien", "text": "Hochreflektierende Flachglasfolien von 3M, Avery Dennison und ImagePerfect. Nachrüstbar an bestehendem Glas, ohne Eingriff in die Fassade.", "imageSlot": "Foto Sonnenschutzfolie", "image": null },
+      { "no": "02", "title": "UV-Schutzfolien", "text": "99.9% UV-Schutz. Möbel, Böden und Ware bleiben länger farbecht, die Ausbleichung wird auf Jahre verzögert.", "imageSlot": "Foto UV-Schutzfolie", "image": null },
+      { "no": "03", "title": "Sonnenschutz-Rollos", "text": "Stoff- und Folienrollos von MULTIFILM® aus Deutschland, exklusiv für die Schweiz und Liechtenstein. Bedienung manuell oder elektrisch.", "imageSlot": "Foto Rollo MULTIFILM", "image": null },
+      { "no": "04", "title": "Textile Systeme", "text": "Rollo, Plissee, Flächenvorhang oder Lamellenvorhang. Elegante Lösungen für eine effiziente Innenbeschattung, massgefertigt.", "imageSlot": "Foto Textile Systeme", "image": null },
+      { "no": "05", "title": "Sicht- und Splitterschutz", "text": "Sichtschutzfolien für Diskretion bei Tageslicht, Splitterschutzfolien für mehr Sicherheit an grossen Glasflächen.", "imageSlot": "Foto Sichtschutzfolie", "image": null },
+      { "no": "06", "title": "Vogelschutz", "text": "Markierungen für Glasfassaden, die Vogelschlag verhindern, ohne die Architektur zu stören.", "imageSlot": "Foto Vogelschutz", "image": null }
+    ]
+  },
+  "ablauf": {
+    "eyebrow": "Ablauf",
+    "headline": "Vier Schritte bis zum fertig montierten Sonnenschutz.",
+    "lead": "Ein Ansprechpartner von der ersten Messung bis zur Abnahme. Auf Wunsch mit Musterlieferung vorab.",
+    "steps": [
+      { "no": "Schritt 01", "title": "Beratung vor Ort oder im Showroom", "text": "Wir schauen Fenster, Ausrichtung und Nutzung an und klären, ob Folie, Rollo oder eine Kombination die richtige Antwort ist." },
+      { "no": "Schritt 02", "title": "Aufmass und Muster", "text": "Exaktes Aufmass am Objekt. Auf Wunsch liefern wir Materialmuster, damit Sie Lichtdurchlass und Farbe am realen Fenster beurteilen können." },
+      { "no": "Schritt 03", "title": "Fertigung nach Mass", "text": "Jedes System wird für Ihr Fenster gefertigt — von den Herstellern, mit denen wir seit Jahren arbeiten: MULTIFILM®, LEHA, Silent Gliss, Création Baumann, MHZ." },
+      { "no": "Schritt 04", "title": "Montage und Abnahme", "text": "Montage durch unser Team oder unsere Montagepartner, sauber und termingerecht — auch im laufenden Betrieb." }
+    ]
+  },
+  "referenzen": {
+    "eyebrow": "Referenzen",
+    "headline": "Was Kunden nach der Montage sagen.",
+    "quotes": [
+      { "text": "Ab Beratung bis zur abgeschlossenen Montage haben Sie in mir einen überaus zufriedenen Kunden gewonnen. Alle Kontaktpersonen und die Monteure waren sehr freundlich und weisen eine hohe Fachkompetenz auf, sind pünktlich und pflichtbewusst.", "name": "Privater Kunde", "meta": "Sonnen- und Blendschutzsysteme Duette" },
+      { "text": "Sunreflex ist ein zuverlässiger Partner mit dem man gerne zusammenarbeitet. Auch die Montage-Mitarbeitenden sind stets freundlich und zuvorkommend. Gesamturteil: ein exzellenter Service, welchen wir zu 100% weiterempfehlen können.", "name": "Maja Faoro", "meta": "Leiterin Office Management, OBT AG" },
+      { "text": "Wir haben die Wirksamkeit während der hohen Sommertemperaturen sehr gut testen können: Der Hitzeschutz ist ausserordentlich gut spürbar.", "name": "Karin Niedermann", "meta": "Private Kundin, Sonnenschutzfolie Hanita" }
+    ],
+    "projectSlots": [
+      { "label": "Foto Büroneubau Proman AG, Wollerau", "image": null },
+      { "label": "Foto Verwaltungsgebäude", "image": null },
+      { "label": "Foto Wintergarten / Privat", "image": null },
+      { "label": "Foto Glasfassade Gewerbe", "image": null }
+    ]
+  },
+  "kontakt": {
+    "headline": "Besuchen Sie unseren Showroom in Brüttisellen.",
+    "lead": "Montag bis Freitag von 8.00 bis 17.00 Uhr auf Voranmeldung, Stationsstrasse 1, 8306 Brüttisellen. Gerne beraten wir Sie auch telefonisch oder per E-Mail.",
+    "form": {
+      "eyebrow": "Unverbindliche Offerte",
+      "fields": [
+        { "name": "name", "placeholder": "Name", "type": "text", "required": true },
+        { "name": "email", "placeholder": "E-Mail", "type": "email", "required": true },
+        { "name": "objekt", "placeholder": "Objekt / Ort", "type": "text", "required": false },
+        { "name": "nachricht", "placeholder": "Worum geht es? Fenster, Fassade, Dachverglasung …", "type": "textarea", "rows": 4, "required": false }
+      ],
+      "submitLabel": "Anfrage senden",
+      "submittedLabel": "Danke — wir melden uns"
+    }
+  },
+  "footer": {
+    "columns": [
+      { "title": "Produkte", "links": ["Sonnenschutzfolien", "UV-Schutzfolien", "Sichtschutzfolien", "Splitterschutz", "Vogelschutz"] },
+      { "title": "Über uns", "links": ["Referenzen", "Testimonials", "Montagepartner", "Team", "Stellen"] },
+      { "title": "Kontakt", "links": ["+41 44 802 90 70", "info@sunreflex.ch", "Standort & Anfahrt"] }
+    ],
+    "baseline": "Sunreflex ist eine Marke von Frontwork AG",
+    "legal": ["Impressum", "Datenschutzerklärung"]
+  },
+  "tokens": {
+    "colors": {
+      "blue": "#1668C4",
+      "blueHover": "#0F4E96",
+      "blueDeep": "#0F3E73",
+      "white": "#FFFFFF",
+      "greyBg": "#F5F7FA",
+      "border": "#E3E7EC",
+      "borderStrong": "#DDE3EA",
+      "borderInput": "#D5DDE5",
+      "borderButton": "#C3CDD7",
+      "text": "#1D2329",
+      "textStrong": "#2A333B",
+      "textSecondary": "#5A656F",
+      "textTertiary": "#7A8691",
+      "textFaint": "#9AA4AE",
+      "textNav": "#4A555F",
+      "heroBase": "#0C1620"
+    },
+    "fonts": { "sans": "Archivo", "mono": "JetBrains Mono" },
+    "radius": "2px",
+    "container": "1240px",
+    "sectionPadding": "120px 40px",
+    "breakpoints": { "hideTel": 1180, "hideTagline": 1080 }
+  }
+}
