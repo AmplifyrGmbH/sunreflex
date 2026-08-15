@@ -472,6 +472,10 @@ button { font-family: inherit; cursor: pointer; }
   .hero-slide { transition: opacity .3s ease; }
   .hero-slide img { transition: none; transform: scale(1) !important; }
 }
+@media (hover: none) {
+  .hero-slide img { transition: none; transform: scale(1) !important; }
+  .hero-slide.is-active img { transform: scale(1) !important; }
+}
 
 .hero-caption {
   position: absolute;
