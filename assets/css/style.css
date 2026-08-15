@@ -219,12 +219,16 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom-color: transparent;
 }
 .site-header.nav-is-open {
-  /* backdrop-filter on this ancestor can stop the fixed mobile nav overlay
-     (a child element) from painting its own solid white background in some
-     WebKit builds — drop it while the overlay is open so the menu is opaque. */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
+.site-header.is-on-hero.nav-is-open {
+  background: rgba(255,255,255,.97);
+}
+.site-header.is-on-hero.nav-is-open .brand__logo--dark  { opacity: 1; }
+.site-header.is-on-hero.nav-is-open .brand__logo--white { opacity: 0; }
+.site-header.is-on-hero.nav-is-open .nav-toggle         { border-color: var(--border); }
+.site-header.is-on-hero.nav-is-open .nav-toggle span    { background: var(--text); }
 .site-header.is-on-hero .site-nav a { color: rgba(255,255,255,.92); }
 .site-header.is-on-hero .site-nav a:hover { color: #fff; }
 .site-header.is-on-hero .header-tel { color: #fff; }
@@ -361,16 +365,15 @@ button { font-family: inherit; cursor: pointer; }
     align-items: flex-start;
     gap: 4px;
     padding: 24px;
-    transform: translateY(-8px);
-    opacity: 0;
+    transform: translateY(-6px);
     visibility: hidden;
-    transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    transition: transform .22s ease, visibility 0s .22s;
   }
   .site-nav.is-open {
     display: flex;
-    opacity: 1;
-    transform: translateY(0);
     visibility: visible;
+    transform: translateY(0);
+    transition: transform .22s ease, visibility 0s;
   }
   .site-nav a {
     width: 100%;
