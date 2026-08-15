@@ -6,7 +6,7 @@
 <title>Impressum | Sunreflex</title>
 <meta name="description" content="Impressum von Sunreflex, einer Marke der Frontwork AG, Stationsstrasse 1, 8306 Brüttisellen.">
 <link rel="canonical" href="https://sunreflex.ch/impressum">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1668C4">
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -17,19 +17,19 @@
 
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
-    <a href="index.html" class="brand">
+    <a href="/" class="brand">
       <img class="brand__logo" src="assets/img/logo-sunreflex.png" alt="Sunreflex – Sonnen- und Blendschutz" width="384" height="127">
     </a>
     <nav class="site-nav" id="site-nav" aria-label="Hauptnavigation">
-      <a href="produkte/index.html">Produkte</a>
-      <a href="referenzen.html">Referenzen</a>
-      <a href="ueber-uns.html">Über uns</a>
-      <a href="downloads.html">Downloads</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="/produkte/">Produkte</a>
+      <a href="/referenzen">Referenzen</a>
+      <a href="/ueber-uns">Über uns</a>
+      <a href="/downloads">Downloads</a>
+      <a href="/kontakt">Kontakt</a>
     </nav>
     <div class="site-header__actions">
       <a href="tel:+41448029070" class="header-tel">Tel: +41 44 802 90 70</a>
-      <a href="kontakt.html" class="btn btn--primary btn--sm">Jetzt anfragen</a>
+      <a href="/kontakt" class="btn btn--primary btn--sm">Jetzt anfragen</a>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
       </button>
@@ -72,7 +72,7 @@
   <div class="container">
     <div class="footer-baseline">
       <span>Sunreflex ist eine Marke von Frontwork AG</span>
-      <span class="footer-legal"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutzerklärung</a></span>
+      <span class="footer-legal"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutzerklärung</a></span>
     </div>
   </div>
 </footer>
@@ -123,7 +123,7 @@
       <svg class="fchat-opt-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
     </a>
 
-    <a class="fchat-opt-row" href="/kontakt.html#kontakt-form">
+    <a class="fchat-opt-row" href="/kontakt#kontakt-form">
       <span class="fchat-opt-icon" style="background:rgba(22,104,196,.10);">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fchat-dark)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 9h8M8 13h5"/></svg>
       </span>
@@ -132,29 +132,13 @@
     </a>
   </div>
 
-  <div class="fchat-win" id="fchatWin">
-    <div class="fchat-bar">
-      <div class="fchat-bar-info">
-        <b>Ihr KI-Berater</b>
-        <small>Jetzt online</small>
-      </div>
-      <button id="fchatWinClose" aria-label="Schliessen" class="fchat-close-btn fchat-close-btn--light" type="button">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="fchat-msgs" id="fchatMsgs"></div>
-    <form class="fchat-form" id="fchatForm">
-      <textarea class="fchat-inp" id="fchatInp" placeholder="Ihre Frage…" rows="1"></textarea>
-      <button type="submit" class="fchat-send">Senden</button>
-    </form>
-    <p class="fchat-hint">KI-Berater — unverbindlich und kostenlos. Ersetzt keine persönliche Beratung.</p>
-  </div>
 
   <button class="fchat-fab" id="fchatBtn" aria-label="Kontakt aufnehmen" aria-expanded="false" type="button">
     <img class="fchat-fab-photo" src="/assets/img/team/beat-staub.webp" alt="" width="56" height="56">
     <svg class="fc-x" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
 </div>
+<script src="https://chat-api.amplifyr-digital.ch/embed/embed.js" data-chatbot="demo-sunreflex" data-primary="#1A2744"></script>
 <script src="/assets/js/floating-contact-widget.js" defer></script>
 </body>
 </html>

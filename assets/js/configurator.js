@@ -211,7 +211,7 @@
     var actions = document.createElement('div');
     actions.className = 'configurator__result-actions';
     var cta = document.createElement('a');
-    cta.href = 'kontakt.html?produkt=' + encodeURIComponent(meta.title) + '#kontakt-form';
+    cta.href = '/kontakt?produkt=' + encodeURIComponent(meta.title) + '#kontakt-form';
     cta.className = 'btn btn--primary btn--sm';
     cta.textContent = meta.title + ' anfragen';
     actions.appendChild(cta);

@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine On
+
+# Redirect direkte .html-Aufrufe auf Clean URLs
+RewriteCond %{REQUEST_URI} \.html$
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# Statische Dateien direkt ausliefern (Assets, Fonts, Videos etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Alle anderen Requests durch router.php (Auth + Clean URLs)
+RewriteRule ^ router.php [QSA,L]
