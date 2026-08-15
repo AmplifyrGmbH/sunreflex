@@ -24,13 +24,31 @@
 
   // "KI-Berater fragen" → Embed-Chatbot öffnen
   var optChat = document.getElementById('fchatOptChat');
+  var greetingShown = false;
+
+  function showGreeting(messages) {
+    if (greetingShown || !messages) return;
+    greetingShown = true;
+    var bubble = document.createElement('div');
+    bubble.innerHTML =
+      '<strong>Hey! 👋 Willkommen bei Sunreflex.</strong><br><br>' +
+      'Zu viel Hitze, zu grell oder blendendes Licht? Ich helfe Ihnen, ' +
+      'die passende Lösung für Ihr Fenster, Ihre Glasfassade oder ' +
+      'Dachverglasung zu finden. ☀️<br><br>Stellen Sie mir einfach Ihre Frage!';
+    bubble.style.cssText =
+      'background:#f1f5f9;border-radius:14px 14px 14px 4px;' +
+      'padding:12px 14px;font-size:.875rem;line-height:1.55;' +
+      'color:#1e293b;margin-bottom:4px;';
+    messages.prepend(bubble);
+  }
+
   if (optChat) optChat.addEventListener('click', function () {
     closeAll();
-    // Panel direkt öffnen (ac-hidden entfernen), Fallback: ac-btn klicken
     var panel = document.getElementById('ac-panel');
     var embedBtn = document.getElementById('ac-btn');
     if (panel && panel.classList.contains('ac-hidden')) {
       panel.classList.remove('ac-hidden');
+      showGreeting(document.getElementById('ac-messages'));
       var inp = panel.querySelector('textarea, input[type="text"]');
       if (inp) inp.focus();
     } else if (embedBtn) {
