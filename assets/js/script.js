@@ -9,6 +9,18 @@
      --------------------------------------------------------------------- */
   var siteHeader = document.getElementById('site-header');
   var hero = document.getElementById('hero');
+  if (siteHeader) {
+    // Keep --header-h in sync with the header's real rendered height so the
+    // hero's negative margin-top always tucks in flush underneath it — the
+    // two can drift apart by a hairline (visible as a thin gap above the
+    // nav) under browser/OS zoom or display-scaling rounding, even though
+    // the CSS values match exactly at 100% zoom.
+    var syncHeaderHeight = function () {
+      document.documentElement.style.setProperty('--header-h', siteHeader.offsetHeight + 'px');
+    };
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight);
+  }
   if (siteHeader && hero && 'IntersectionObserver' in window) {
     siteHeader.classList.add('is-on-hero');
     var heroObserver = new IntersectionObserver(function (entries) {
@@ -78,33 +90,96 @@
     }
 
     /* ---------------------------------------------------------------------
-       Hero video intro: UV-Folie + Rollo product videos play once, then
-       hand off to the slideshow above
+       Hero video intro: one combined UV-Folie + Rollo clip plays once, then
+       hands off to the slideshow above. Relies on the native `autoplay`
+       HTML attribute (set in the markup) to start playback — the browser's
+       own autoplay pipeline runs before any JS executes and is honoured far
+       more reliably on mobile than a JS-triggered play() call after load.
        --------------------------------------------------------------------- */
     var videoSequence = document.getElementById('hero-video-sequence');
-    var videos = videoSequence ? Array.prototype.slice.call(videoSequence.querySelectorAll('.hero-video')) : [];
+    var video = videoSequence ? videoSequence.querySelector('.hero-video') : null;
     var sequenceDone = false;
+    var captionSwapped = false;
 
     function finishVideoSequence() {
       if (sequenceDone) return;
       sequenceDone = true;
-      videos.forEach(function (v) { v.pause(); });
+      if (video) video.pause();
       if (videoSequence) videoSequence.classList.add('is-done');
       startSlideshow();
     }
 
-    if (videoSequence && videos.length === 2 && !reduceMotion && typeof videos[0].play === 'function') {
-      videos[0].addEventListener('ended', function () {
-        setCaption(videos[1]);
-        videos[0].classList.remove('is-active');
-        videos[1].classList.add('is-active');
-        videos[1].play().catch(finishVideoSequence);
-      });
-      videos[1].addEventListener('ended', finishVideoSequence);
+    if (videoSequence && video && typeof video.play === 'function') {
+      var swapAt = parseFloat(video.dataset.swapAt || '0');
 
-      setCaption(videos[0]);
-      videos[0].play().catch(finishVideoSequence);
+      if (swapAt > 0 && video.dataset.title2) {
+        video.addEventListener('timeupdate', function () {
+          if (!captionSwapped && video.currentTime >= swapAt) {
+            captionSwapped = true;
+            setCaption({ dataset: { title: video.dataset.title2, text: video.dataset.text2 } });
+          }
+        });
+      }
+      video.addEventListener('ended', finishVideoSequence);
+      setCaption(video);
+
+      // Mobile browsers are far stricter about autoplay than the `autoplay`
+      // HTML attribute alone can guarantee, and on a real (non-zero-latency)
+      // mobile connection the video's own data can simply arrive too slowly
+      // for the browser's autoplay pipeline to have anything to play yet.
+      // Setting `.muted`/`.defaultMuted` via JS right before play() (not
+      // just the HTML attributes) and retrying play() on every "we now have
+      // more data" event plus a fixed schedule, mirrors the approach already
+      // proven reliable on this client's own amplifyr.ch hero video.
+      video.muted = true;
+      video.defaultMuted = true;
+
+      function attemptPlay() {
+        if (sequenceDone) return;
+        var playResult = video.play();
+        if (playResult && typeof playResult.catch === 'function') {
+          playResult.catch(function () {});
+        }
+      }
+
+      attemptPlay();
+      ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (ev) {
+        video.addEventListener(ev, attemptPlay, { once: true });
+      });
+      [100, 300, 800, 1500, 2500, 4000, 6000, 9000].forEach(function (delay) {
+        window.setTimeout(function () {
+          if (!sequenceDone && video.paused && !video.ended) attemptPlay();
+        }, delay);
+      });
+
+      // First-tap fallback: if the browser is still refusing autoplay after
+      // all of the above (some strict in-app/webview browsers require an
+      // actual user gesture no matter what), the visitor's first touch or
+      // click retries playback immediately.
+      var gestureRetried = false;
+      function retryOnGesture() {
+        if (gestureRetried || sequenceDone || !video.paused) return;
+        gestureRetried = true;
+        attemptPlay();
+      }
+      document.addEventListener('touchstart', retryOnGesture, { once: true, passive: true });
+      document.addEventListener('pointerdown', retryOnGesture, { once: true });
+
+      // Final backstop: only give up to the slideshow if the video genuinely
+      // never started (still at/near 0s after every retry above). If it IS
+      // playing, let it run to its own 'ended' event instead of cutting it
+      // off after a fixed delay — otherwise a video that autoplayed
+      // successfully gets paused and hidden partway through, looking exactly
+      // like it "never played" to anyone who checks the page more than a
+      // few seconds after loading it.
+      window.setTimeout(function () {
+        if (sequenceDone || video.currentTime > 0.5) return;
+        finishVideoSequence();
+      }, 10000);
     } else {
+      // No video element on the page (or the browser lacks .play()) —
+      // go straight to the slideshow.
+      if (video) video.pause();
       startSlideshow();
     }
   }
@@ -118,6 +193,7 @@
   function closeNav() {
     if (!siteNav || !navToggle) return;
     siteNav.classList.remove('is-open');
+    if (siteHeader) siteHeader.classList.remove('nav-is-open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Menü öffnen');
   }
@@ -125,6 +201,12 @@
   function openNav() {
     if (!siteNav || !navToggle) return;
     siteNav.classList.add('is-open');
+    // A `backdrop-filter` on an ancestor can stop a fixed-position child
+    // (this nav overlay) from painting its own solid background — some
+    // WebKit builds fold the child into the same blurred layer instead of
+    // compositing it as an opaque box, letting page content bleed through.
+    // Drop the header's blur while the overlay is open to guarantee it's solid.
+    if (siteHeader) siteHeader.classList.add('nav-is-open');
     navToggle.setAttribute('aria-expanded', 'true');
     navToggle.setAttribute('aria-label', 'Menü schliessen');
   }

@@ -33,9 +33,10 @@
 <!-- Preload critical assets -->
 <link rel="preload" as="font" href="assets/fonts/archivo-variable.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/jetbrainsmono-variable.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/img/hero-slides/01-lamellen-nahaufnahme.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/video/hero-combined-poster-v4.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/img/hero-slides/01-lamellen-nahaufnahme.webp">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 <noscript><style>
   .hero-video-sequence { display: none; }
   .hero__content--pending { opacity: 1; transform: none; }
@@ -126,13 +127,11 @@
   <section class="hero" id="hero">
     <div class="hero__media" aria-hidden="true">
       <div class="hero-video-sequence" id="hero-video-sequence">
-        <video class="hero-video is-active" muted playsinline preload="auto"
-               data-title="UV-Schutzfolien" data-text="unsichtbarer Schutz vor schädlichen UV-Strahlen">
-          <source src="assets/video/uv-folie-hero.mp4" type="video/mp4">
-        </video>
-        <video class="hero-video" muted playsinline preload="auto"
-               data-title="Rollos" data-text="Blend- und Hitzeschutz mit Stil">
-          <source src="assets/video/rollo-hero.mp4" type="video/mp4">
+        <video class="hero-video is-active" autoplay muted playsinline webkit-playsinline preload="auto" poster="assets/video/hero-combined-poster-v4.jpg"
+               data-title="UV-Schutzfolien" data-text="unsichtbarer Schutz vor schädlichen UV-Strahlen"
+               data-title-2="Rollo" data-text-2="Beispielhaftes Lichtspiel durch ein textiles Rollo-Gewebe" data-swap-at="6.3">
+          <source src="assets/video/hero-combined-v5.webm" type="video/webm">
+          <source src="assets/video/hero-combined-v5.mp4#t=0.001" type="video/mp4">
         </video>
       </div>
       <div class="hero-slideshow" id="hero-slideshow">
@@ -171,7 +170,7 @@
       </div>
     </div>
 
-    <div class="hero__content hero__content--pending" id="hero-content">
+    <div class="hero__content" id="hero-content">
       <p class="eyebrow eyebrow--light">
         <span class="eyebrow__rule"></span>
         Brüttisellen · Vertriebspartner in der ganzen Schweiz
@@ -180,8 +179,7 @@
       <p class="hero__lead">Spezialist für Sonnenschutz und Blendschutz an Fenstern, Glasfassaden und Dachverglasungen. Von hochreflektierenden Fensterfolien bis zu massgefertigten textilen Systemen — geplant, geliefert und montiert aus einer Hand.</p>
 
       <div class="hero__actions">
-        <a href="#kontakt" class="btn btn--primary">Beratung anfragen</a>
-        <a href="#configurator" class="btn btn--outline-light">Konfigurator starten</a>
+        <a href="#configurator" class="btn btn--primary">Konfigurator starten</a>
       </div>
     </div>
   </section>
@@ -236,7 +234,7 @@
       </div>
 
       <div class="grid grid--products">
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/sonnenschutzfolien.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-sonnenschutzfolien.webp" alt="Büroraum mit montierten Sonnenschutzfolien an einer Fensterfront" loading="lazy" width="640" height="480">
           </div>
@@ -245,9 +243,9 @@
             <h3 class="product-card__title">Sonnenschutzfolien</h3>
             <p class="product-card__text">Hochreflektierende Flachglasfolien von 3M, Avery Dennison und ImagePerfect. Nachrüstbar an bestehendem Glas, ohne Eingriff in die Fassade.</p>
           </div>
-        </article>
+        </a>
 
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/uv-schutzfolien.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-uv-schutzfolien.webp" alt="Nahaufnahme einer Sonnenschutz-Lamelle mit Lichtdurchlass" loading="lazy" width="640" height="480">
           </div>
@@ -256,9 +254,9 @@
             <h3 class="product-card__title">UV-Schutzfolien</h3>
             <p class="product-card__text">99.9% UV-Schutz. Möbel, Böden und Ware bleiben länger farbecht, die Ausbleichung wird auf Jahre verzögert.</p>
           </div>
-        </article>
+        </a>
 
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/rollos.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-rollos.webp" alt="Wohnraum mit Sonnenschutz-Rollo MULTIFILM am Fenster" loading="lazy" width="640" height="480">
           </div>
@@ -267,9 +265,9 @@
             <h3 class="product-card__title">Sonnenschutz-Rollos</h3>
             <p class="product-card__text">Stoff- und Folienrollos von MULTIFILM® aus Deutschland, exklusiv für die Schweiz und Liechtenstein. Bedienung manuell oder elektrisch.</p>
           </div>
-        </article>
+        </a>
 
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/textile-systeme.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-textile-systeme.webp" alt="Helles Wohnzimmer mit textilem Sonnenschutzsystem am Fenster" loading="lazy" width="640" height="480">
           </div>
@@ -278,9 +276,9 @@
             <h3 class="product-card__title">Textile Systeme</h3>
             <p class="product-card__text">Rollo, Plissee, Flächenvorhang oder Lamellenvorhang. Elegante Lösungen für eine effiziente Innenbeschattung, massgefertigt.</p>
           </div>
-        </article>
+        </a>
 
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/sicht-splitterschutz.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-sicht-splitterschutz.webp" alt="Splitterschutzfolie hält zersplittertes Glas nach einem Aufprall zusammen" loading="lazy" width="640" height="480">
           </div>
@@ -289,9 +287,9 @@
             <h3 class="product-card__title">Sicht- und Splitterschutz</h3>
             <p class="product-card__text">Sichtschutzfolien für Diskretion bei Tageslicht, Splitterschutzfolien für mehr Sicherheit an grossen Glasflächen.</p>
           </div>
-        </article>
+        </a>
 
-        <article class="product-card" data-reveal>
+        <a class="product-card" data-reveal href="produkte/vogelschutz.html">
           <div class="product-card__media">
             <img src="assets/img/produkt-vogelschutz.webp" alt="Glasfassade im Gegenlicht, Anwendungsbereich für Vogelschutzmarkierungen" loading="lazy" width="800" height="600">
           </div>
@@ -300,7 +298,7 @@
             <h3 class="product-card__title">Vogelschutz</h3>
             <p class="product-card__text">Markierungen für Glasfassaden, die Vogelschlag verhindern, ohne die Architektur zu stören.</p>
           </div>
-        </article>
+        </a>
       </div>
     </div>
   </section>
@@ -498,7 +496,7 @@
 <script src="assets/js/vendor/gsap.min.js" defer></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="assets/js/configurator.js" defer></script>
-<script src="assets/js/script.js" defer></script>
+<script src="assets/js/script.js?v=5" defer></script>
 <!-- ============ FLOATING CONTACT WIDGET ============ -->
 <div id="fchat" class="fchat">
   <div class="fchat-opts" id="fchatOpts">

@@ -27,7 +27,17 @@ const SYSTEM_PROMPT = 'Du bist der freundliche digitale Berater von Sunreflex, e
   + 'Wenn eine Frage über diese Fakten hinausgeht und eine persönliche Beratung, ein Angebot '
   + 'oder eine Vor-Ort-Einschätzung braucht, verweise freundlich auf das Kontaktformular oder '
   + 'die Telefonnummer +41 44 802 90 70. Erfinde keine Preise, Garantien oder technischen '
-  + 'Kennzahlen, die nicht oben stehen oder dir sonst sicher bekannt sind.';
+  + 'Kennzahlen, die nicht oben stehen oder dir sonst sicher bekannt sind.\n\n'
+  + 'Antworte immer in reinem Fliesstext, ohne Markdown-Formatierung — keine Sternchen für '
+  + 'Fett-/Kursivschrift, keine Überschriften mit #, keine Aufzählungszeichen mit - oder *.';
+
+function stripMarkdown(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^[-*]\s+/gm, '');
+}
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -57,25 +67,41 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  try {
-    const geminiRes = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': apiKey
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-          contents: [{ role: 'user', parts: [{ text: message }] }]
-        })
-      }
-    );
+  const RETRYABLE_STATUS = [429, 500, 503];
+  const MAX_ATTEMPTS = 3;
 
-    const rawBody = await geminiRes.text();
+  try {
+    let geminiRes;
+    let rawBody;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      geminiRes = await fetch(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey
+          },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+            contents: [{ role: 'user', parts: [{ text: message }] }]
+          })
+        }
+      );
+
+      rawBody = await geminiRes.text();
+      if (geminiRes.ok) break;
+
+      const isRetryable = RETRYABLE_STATUS.indexOf(geminiRes.status) !== -1;
+      console.error('Gemini API error (attempt ' + attempt + '/' + MAX_ATTEMPTS + ')', geminiRes.status, rawBody);
+      if (!isRetryable || attempt === MAX_ATTEMPTS) break;
+
+      // Transient overload/rate-limit — back off briefly and retry rather than
+      // immediately surfacing the generic "nicht erreichbar" fallback to the user.
+      await new Promise(function (resolve) { setTimeout(resolve, attempt * 400); });
+    }
+
     if (!geminiRes.ok) {
-      console.error('Gemini API error', geminiRes.status, rawBody);
       res.status(200).json({
         reply: 'Entschuldigung, ich bin gerade nicht erreichbar. Bitte kontaktieren Sie uns direkt telefonisch oder per E-Mail.'
       });
@@ -83,9 +109,13 @@ module.exports = async function handler(req, res) {
     }
 
     const data = JSON.parse(rawBody);
-    const reply = data && data.candidates && data.candidates[0]
+    const rawReply = data && data.candidates && data.candidates[0]
       && data.candidates[0].content && data.candidates[0].content.parts
       && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text;
+
+    // Safety net: strip any markdown the model emits despite the plain-text
+    // instruction, since the widget renders replies as plain text.
+    const reply = rawReply && stripMarkdown(rawReply);
 
     res.status(200).json({ reply: reply || 'Entschuldigung, dazu habe ich gerade keine Antwort. Bitte kontaktieren Sie uns direkt.' });
   } catch (err) {
