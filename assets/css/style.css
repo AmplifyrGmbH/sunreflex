@@ -1532,7 +1532,16 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Embed-Chatbot-Button ausblenden (wird via fchat-Widget getriggert) */
-#ac-btn { display: none !important; }
+#ac-btn {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
 
 /* ==========================================================================
    FAQ

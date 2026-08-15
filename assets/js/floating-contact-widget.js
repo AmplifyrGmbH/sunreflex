@@ -26,7 +26,15 @@
   var optChat = document.getElementById('fchatOptChat');
   if (optChat) optChat.addEventListener('click', function () {
     closeAll();
+    // Panel direkt öffnen (ac-hidden entfernen), Fallback: ac-btn klicken
+    var panel = document.getElementById('ac-panel');
     var embedBtn = document.getElementById('ac-btn');
-    if (embedBtn) embedBtn.click();
+    if (panel && panel.classList.contains('ac-hidden')) {
+      panel.classList.remove('ac-hidden');
+      var inp = panel.querySelector('textarea, input[type="text"]');
+      if (inp) inp.focus();
+    } else if (embedBtn) {
+      embedBtn.click();
+    }
   });
 })();
