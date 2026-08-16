@@ -109,12 +109,7 @@
       startSlideshow();
     }
 
-    // On touch devices the video intro is unreliable (autoplay restrictions,
-    // slow connections, iOS ended-event bugs) — skip straight to slideshow.
-    if (window.matchMedia('(hover: none)').matches) {
-      if (video) video.pause();
-      startSlideshow();
-    } else if (videoSequence && video && typeof video.play === 'function') {
+    if (videoSequence && video && typeof video.play === 'function') {
       var swapAt = parseFloat(video.dataset.swapAt || '0');
 
       if (swapAt > 0 && video.dataset.title2) {
@@ -181,6 +176,15 @@
         if (sequenceDone || video.currentTime > 0.5) return;
         finishVideoSequence();
       }, 10000);
+
+      // iOS sometimes doesn't fire 'ended' reliably — poll as backstop
+      var endedPoll = window.setInterval(function () {
+        if (sequenceDone) { clearInterval(endedPoll); return; }
+        if (video.ended || (video.duration > 0 && video.currentTime >= video.duration - 0.3)) {
+          clearInterval(endedPoll);
+          finishVideoSequence();
+        }
+      }, 500);
     } else {
       // No video element on the page (or the browser lacks .play()) —
       // go straight to the slideshow.
