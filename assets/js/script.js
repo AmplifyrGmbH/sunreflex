@@ -209,11 +209,16 @@
 
   function openNav() {
     if (!siteNav || !navToggle) return;
-    // Remove header backdrop-filter BEFORE showing nav — otherwise Safari
-    // composites the nav into the parent's blur layer for one frame, making
-    // it appear transparent on open.
+    // 1. Remove header backdrop-filter first
     if (siteHeader) siteHeader.classList.add('nav-is-open');
-    siteNav.classList.add('is-open');
+    // 2. Double-rAF: wait for backdrop-filter removal to be composited
+    //    before making the nav visible — Safari needs two frames to
+    //    tear down the blur layer before children can paint opaque.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        siteNav.classList.add('is-open');
+      });
+    });
     navToggle.setAttribute('aria-expanded', 'true');
     navToggle.setAttribute('aria-label', 'Menü schliessen');
   }
