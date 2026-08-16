@@ -1558,14 +1558,22 @@ button { font-family: inherit; cursor: pointer; }
   #ac-panel input:not([type]) {
     font-size: 16px !important;
   }
-  /* Header immer sichtbar, nie zusammengedrückt */
+  /* Header immer sichtbar – fixed damit iOS-Keyboard ihn nicht wegschiebt */
   #ac-panel #ac-header,
   #ac-panel [id*="header"],
   #ac-panel [class*="header"] {
     flex-shrink: 0 !important;
-    position: sticky !important;
+    position: fixed !important;
     top: 0 !important;
-    z-index: 1 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100000 !important;
+  }
+  /* Nachrichten-Bereich: Abstand für fixed Header */
+  #ac-panel #ac-messages,
+  #ac-panel [id*="message"],
+  #ac-panel [class*="message"] {
+    padding-top: 60px !important;
   }
   /* Nachrichtenbereich füllt verfügbaren Platz */
   #ac-panel #ac-messages,

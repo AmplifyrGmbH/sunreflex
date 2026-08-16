@@ -49,8 +49,6 @@
     if (panel && panel.classList.contains('ac-hidden')) {
       panel.classList.remove('ac-hidden');
       showGreeting(document.getElementById('ac-messages'));
-      var inp = panel.querySelector('textarea, input[type="text"]');
-      if (inp) inp.focus();
     } else if (embedBtn) {
       embedBtn.click();
     }
