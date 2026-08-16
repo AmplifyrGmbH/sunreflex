@@ -99,6 +99,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .section {
   padding: 72px 24px;
+  scroll-margin-top: var(--header-h);
 }
 .section--grey { background: var(--grey-bg); }
 .section--contact { padding-top: 48px; }
@@ -210,7 +211,12 @@ button { font-family: inherit; cursor: pointer; }
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
-  transition: background-color .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+  /* backdrop-filter is intentionally NOT transitioned (changes instantly) —
+     an animated backdrop-filter makes WebKit keep a persistent compositing
+     layer on this header, which then makes the mobile nav (nested inside
+     it) fail to paint its own opaque background the very first time it
+     opens, until a scroll forces a layer-tree recompute. */
+  transition: background-color .4s ease, border-color .4s ease;
 }
 .site-header.is-on-hero {
   background: transparent;
@@ -1551,7 +1557,14 @@ button { font-family: inherit; cursor: pointer; }
     inset: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    max-height: none !important;
+    /* The embed's own default CSS hardcodes height: 480px. Without an
+       explicit height override here, that fixed value wins over `inset: 0`
+       (when both a `bottom` offset and an explicit height are set, the
+       height wins and `bottom` is dropped) — pinning the panel to the top
+       of the screen and leaving a gap below it where the page shows
+       through. 100dvh keeps it truly fullscreen and viewport/keyboard-aware. */
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     border-radius: 0 !important;
     z-index: 99999 !important;
     display: flex !important;

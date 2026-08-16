@@ -209,8 +209,15 @@
 
   function openNav() {
     if (!siteNav || !navToggle) return;
-    // 1. Remove header backdrop-filter first
-    if (siteHeader) siteHeader.classList.add('nav-is-open');
+    // 1. Remove header backdrop-filter first, then force a synchronous
+    //    reflow so Safari recomputes the header's compositing layer right
+    //    away instead of lazily — otherwise the nav (nested inside the
+    //    header) can get promoted to its own layer before the header's
+    //    filter layer has been torn down, and fails to paint opaque.
+    if (siteHeader) {
+      siteHeader.classList.add('nav-is-open');
+      void siteHeader.offsetHeight;
+    }
     // 2. Double-rAF: wait for backdrop-filter removal to be composited
     //    before making the nav visible — Safari needs two frames to
     //    tear down the blur layer before children can paint opaque.
