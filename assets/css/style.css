@@ -1391,8 +1391,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 @keyframes fchatPulse {
-  0%, 100% { box-shadow: 0 6px 28px rgba(0,0,0,.38), 0 0 0 0 rgba(255,255,255,.3); }
-  60%       { box-shadow: 0 6px 28px rgba(0,0,0,.38), 0 0 0 9px rgba(255,255,255,0); }
+  0%, 100% { box-shadow: 0 6px 28px rgba(0,0,0,.38), 0 0 0 0 rgba(13,28,43,.45); }
+  60%       { box-shadow: 0 6px 28px rgba(0,0,0,.38), 0 0 0 10px rgba(13,28,43,0); }
 }
 
 .fchat-fab {
