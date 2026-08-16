@@ -109,7 +109,12 @@
       startSlideshow();
     }
 
-    if (videoSequence && video && typeof video.play === 'function') {
+    // On touch devices the video intro is unreliable (autoplay restrictions,
+    // slow connections, iOS ended-event bugs) — skip straight to slideshow.
+    if (window.matchMedia('(hover: none)').matches) {
+      if (video) video.pause();
+      startSlideshow();
+    } else if (videoSequence && video && typeof video.play === 'function') {
       var swapAt = parseFloat(video.dataset.swapAt || '0');
 
       if (swapAt > 0 && video.dataset.title2) {

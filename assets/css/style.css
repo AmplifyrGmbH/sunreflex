@@ -1538,6 +1538,20 @@ button { font-family: inherit; cursor: pointer; }
   .fchat-opts { width: calc(100vw - 48px); }
 }
 
+/* Embed-Chatbot-Panel: Fullscreen */
+#ac-panel {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+}
+
 /* Embed-Chatbot-Button ausblenden (wird via fchat-Widget getriggert) */
 #ac-btn {
   visibility: hidden !important;
