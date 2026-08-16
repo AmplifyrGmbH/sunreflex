@@ -1544,11 +1544,33 @@ button { font-family: inherit; cursor: pointer; }
     position: fixed !important;
     inset: 0 !important;
     width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     max-width: 100% !important;
     border-radius: 0 !important;
     z-index: 99999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  /* iOS: font-size >= 16px verhindert automatischen Zoom beim Tippen */
+  #ac-panel textarea,
+  #ac-panel input[type="text"],
+  #ac-panel input:not([type]) {
+    font-size: 16px !important;
+  }
+  /* Nachrichtenbereich füllt verfügbaren Platz */
+  #ac-panel #ac-messages,
+  #ac-panel [id*="message"],
+  #ac-panel [class*="message"] {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  /* Eingabebereich bleibt unten */
+  #ac-panel #ac-form,
+  #ac-panel form {
+    flex-shrink: 0 !important;
+    padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
   }
 }
 
