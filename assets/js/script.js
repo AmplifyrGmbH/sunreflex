@@ -200,13 +200,11 @@
 
   function openNav() {
     if (!siteNav || !navToggle) return;
-    siteNav.classList.add('is-open');
-    // A `backdrop-filter` on an ancestor can stop a fixed-position child
-    // (this nav overlay) from painting its own solid background — some
-    // WebKit builds fold the child into the same blurred layer instead of
-    // compositing it as an opaque box, letting page content bleed through.
-    // Drop the header's blur while the overlay is open to guarantee it's solid.
+    // Remove header backdrop-filter BEFORE showing nav — otherwise Safari
+    // composites the nav into the parent's blur layer for one frame, making
+    // it appear transparent on open.
     if (siteHeader) siteHeader.classList.add('nav-is-open');
+    siteNav.classList.add('is-open');
     navToggle.setAttribute('aria-expanded', 'true');
     navToggle.setAttribute('aria-label', 'Menü schliessen');
   }
