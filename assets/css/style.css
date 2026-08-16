@@ -1558,6 +1558,15 @@ button { font-family: inherit; cursor: pointer; }
   #ac-panel input:not([type]) {
     font-size: 16px !important;
   }
+  /* Header immer sichtbar, nie zusammengedrückt */
+  #ac-panel #ac-header,
+  #ac-panel [id*="header"],
+  #ac-panel [class*="header"] {
+    flex-shrink: 0 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1 !important;
+  }
   /* Nachrichtenbereich füllt verfügbaren Platz */
   #ac-panel #ac-messages,
   #ac-panel [id*="message"],
