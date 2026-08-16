@@ -4,14 +4,26 @@ Sunreflex ist der Geschäftsbereich für Sonnen- und Blendschutz der Frontwork A
 
 ## Hauptleistungen
 - Sonnenschutzfolien (hochreflektierende Flachglasfolien von 3M, Avery Dennison, ImagePerfect)
-- UV-Schutzfolien (99.9% UV-Schutz)
+- UV-Schutzfolien (99.9% UV-Schutz, unsichtbarer Schutz vor Ausbleichung)
 - Sonnenschutz-Rollos (exklusiver MULTIFILM®-Partner für Schweiz und Liechtenstein)
 - Textile Systeme (Rollo, Plissee, Flächenvorhang, Lamellenvorhang)
-- Sicht- und Splitterschutzfolien
-- Vogelschutz-Markierungen für Glasfassaden
+- Sicht- und Splitterschutzfolien (Sichtschutz bei Tageslicht, Splitterschutz nach DIN EN 12600)
+- Vogelschutz-Markierungen für Glasfassaden (geprüft Kategorie A)
 
-## Wichtigste Seite
+## Seiten
 - Startseite: https://sunreflex.ch/
+- Produkte Übersicht: https://sunreflex.ch/produkte
+- Sonnenschutzfolien: https://sunreflex.ch/produkte/sonnenschutzfolien
+- UV-Schutzfolien: https://sunreflex.ch/produkte/uv-schutzfolien
+- Sonnenschutz-Rollos: https://sunreflex.ch/produkte/rollos
+- Textile Systeme: https://sunreflex.ch/produkte/textile-systeme
+- Sicht- & Splitterschutz: https://sunreflex.ch/produkte/sicht-splitterschutz
+- Vogelschutz: https://sunreflex.ch/produkte/vogelschutz
+- Konfigurator: https://sunreflex.ch/konfigurator
+- Referenzen: https://sunreflex.ch/referenzen
+- Über uns: https://sunreflex.ch/ueber-uns
+- Kontakt: https://sunreflex.ch/kontakt
+- Downloads: https://sunreflex.ch/downloads
 
 ## Kontakt
 Telefon: +41 44 802 90 70
