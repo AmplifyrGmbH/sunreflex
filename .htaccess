@@ -1,6 +1,11 @@
 Options -Indexes
 RewriteEngine On
 
+# www -> non-www (kanonische Domain ohne www; hält Origin konsistent fürs
+# Chat-Widget, dessen CORS-Allowlist nur die non-www-Domain erlaubt)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
 # Redirect direkte .html-Aufrufe auf Clean URLs
 RewriteCond %{REQUEST_URI} \.html$
 RewriteRule ^index\.html$ / [R=301,L]
